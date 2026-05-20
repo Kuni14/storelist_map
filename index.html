@@ -1,15 +1,66 @@
-const stores = [
+<!DOCTYPE html>
+<html lang="ja">
 
-  {
-    name:"CPNNEX Collectible",
-    lat:4.9057666,
-    lng:114.9164774
-  },
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Store Map</title>
+
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<style>
+
+html,
+body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+}
+
+#map{
+  width:100%;
+  height:100vh;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<script
+src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+<script>
+
+const map = L.map('map').setView(
+  [35.681236, 139.767125],
+  5
+);
+
+L.tileLayer(
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
-    name:"TSUTAYA BOOKSTORE Cambodia",
-    lat:11.5475499,
-    lng:104.9329576
+    attribution:
+      '&copy; OpenStreetMap contributors'
   }
+).addTo(map);
 
-];
+L.marker([35.681236, 139.767125])
+  .addTo(map)
+  .bindPopup('Tokyo');
+
+</script>
+
+</body>
+</html>
