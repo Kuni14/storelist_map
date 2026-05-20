@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Store Map</title>
+<title>South East Asia Stores</title>
 
 <link
 rel="stylesheet"
@@ -16,8 +13,7 @@ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 
 <style>
 
-html,
-body{
+html,body{
   margin:0;
   padding:0;
   width:100%;
@@ -29,36 +25,72 @@ body{
   height:100vh;
 }
 
+.title{
+  position:absolute;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:1000;
+
+  background:white;
+  padding:10px 20px;
+  border-radius:12px;
+
+  font-family:Arial,sans-serif;
+  font-size:22px;
+  font-weight:bold;
+
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+
 </style>
 
 </head>
 
 <body>
 
+<div class="title">
+South East Asia Stores
+</div>
+
 <div id="map"></div>
 
-<script
-src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
 
-const map = L.map('map').setView(
-  [35.681236, 139.767125],
-  5
-);
+const map = L.map('map').setView([5,105],5);
 
 L.tileLayer(
-  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  {
-    attribution:
-      '&copy; OpenStreetMap contributors'
-  }
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+attribution:'&copy; OpenStreetMap contributors'
+}
 ).addTo(map);
 
-L.marker([35.681236, 139.767125])
-  .addTo(map)
-  .bindPopup('Tokyo');
+const stores = [
+
+{
+name:"CPNNEX Collectible",
+lat:4.9057666,
+lng:114.9164774
+},
+
+{
+name:"TSUTAYA BOOKSTORE Cambodia",
+lat:11.5475499,
+lng:104.9329576
+}
+
+];
+
+stores.forEach((store)=>{
+
+L.marker([store.lat,store.lng])
+.addTo(map)
+.bindPopup(store.name);
+
+});
 
 </script>
 
